@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/upload-url",
+      "dest": "/api/upload_url.py"
+    },
+    {
+      "src": "/api/health",
+      "dest": "/api/health.py"
+    },
+    {
+      "src": "/api/upload",
+      "dest": "/api/upload.py"
+    },
+    {
+      "src": "/api/ask",
+      "dest": "/api/ask.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    }
+  ],
+  "functions": {
+    "api/ask.py": {
+      "maxDuration": 60
+    },
+    "api/upload.py": {
+      "maxDuration": 30
+    },
+    "api/upload_url.py": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ARENA — Multi-Document Research Agent</title>
+<meta name="description" content="Upload documents and watch AI agents debate to find the best answer. Multi-round structured debates with communication scoring." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-left">
+    <span class="mark">◆</span>
+    <h1>ARENA</h1>
+  </div>
+  <p class="tagline">Multi-Agent Debate System / Communicate · Compete · Convince</p>
+</header>
+
+<main class="grid">
+
+  <!-- LEFT: Evidence intake -->
+  <section class="panel panel-intake">
+    <h2 class="panel-title">01 — EVIDENCE</h2>
+
+    <div class="dropzone" id="dropzone">
+      <p>Drop PDF · CSV · XLSX here, or</p>
+      <label class="btn-file">
+        choose files
+        <input type="file" id="fileInput" multiple accept=".pdf,.csv,.xlsx,.xls" hidden />
+      </label>
+    </div>
+
+    <div class="url-row">
+      <input type="text" id="urlInput" placeholder="https://paste-a-webpage-url.com" />
+      <button id="urlBtn" class="btn-secondary">add url</button>
+    </div>
+
+    <div class="source-list" id="sourceList">
+      <p class="empty-note">No documents yet. Upload to begin.</p>
+    </div>
+
+    <button id="resetDocsBtn" class="btn-ghost small">clear all evidence</button>
+  </section>
+
+  <!-- CENTER: Question + Debate -->
+  <section class="panel panel-battle">
+    <h2 class="panel-title">02 — THE ARENA</h2>
+
+    <div class="ask-row">
+      <input type="text" id="questionInput" placeholder="Ask a question about the uploaded documents…" />
+      <select id="numAgents">
+        <option value="3" selected>3 agents</option>
+        <option value="4">4 agents</option>
+      </select>
+      <select id="debateRounds">
+        <option value="1">1 round (quick)</option>
+        <option value="2">2 rounds</option>
+        <option value="3" selected>3 rounds (full debate)</option>
+      </select>
+      <button id="askBtn" class="btn-primary">debate</button>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <!-- Debate Rounds -->
+    <div id="debateTimeline" class="debate-timeline" style="display:none;">
+      <div class="timeline-header">
+        <h3 class="timeline-title">DEBATE TIMELINE</h3>
+        <div class="round-tabs" id="roundTabs"></div>
+      </div>
+      <div id="roundContent" class="round-content"></div>
+    </div>
+
+    <!-- Legacy single-round display (hidden when debate is active) -->
+    <div id="battleField" class="battle-field"></div>
+
+    <div id="verdictBox" class="verdict-box" style="display:none;">
+      <div class="verdict-header">
+        <div class="verdict-label">VERDICT</div>
+        <div class="verdict-badges" id="verdictBadges"></div>
+      </div>
+      <p id="verdictRationale"></p>
+      <div id="verdictScores" class="verdict-scores"></div>
+    </div>
+
+    <div id="finalAnswerBox" class="final-answer" style="display:none;">
+      <h3>COMBINED ANSWER</h3>
+      <div id="finalAnswerText"></div>
+    </div>
+  </section>
+
+  <!-- RIGHT: Leaderboard -->
+  <section class="panel panel-leaderboard">
+    <h2 class="panel-title">03 — TRUST POLICY</h2>
+    <p class="sub-note">Reinforcement-learned agent trust, persisted in your browser.</p>
+    <div id="leaderboard" class="leaderboard"></div>
+    <button id="resetPolicyBtn" class="btn-ghost small">reset learning</button>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>literalist · analyst · skeptic · explainer</span>
+  <span>debate → verify → learn → combine</span>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
