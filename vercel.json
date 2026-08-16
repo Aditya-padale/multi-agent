@@ -12,10 +12,7 @@
     }
   },
   "rewrites": [
-    { "source": "/api/upload-url", "destination": "/api/upload_url.py" },
-    { "source": "/api/health", "destination": "/api/health.py" },
-    { "source": "/api/upload", "destination": "/api/upload.py" },
-    { "source": "/api/ask", "destination": "/api/ask.py" }
+    { "source": "/api/upload-url", "destination": "/api/upload_url" }
   ],
   "headers": [
     {
