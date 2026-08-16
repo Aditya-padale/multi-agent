@@ -1,51 +1,28 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/upload-url",
-      "dest": "/api/upload_url.py"
-    },
-    {
-      "src": "/api/health",
-      "dest": "/api/health.py"
-    },
-    {
-      "src": "/api/upload",
-      "dest": "/api/upload.py"
-    },
-    {
-      "src": "/api/ask",
-      "dest": "/api/ask.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
-    }
-  ],
   "functions": {
     "api/ask.py": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "maxLambdaSize": "50mb"
     },
     "api/upload.py": {
-      "maxDuration": 30
+      "maxDuration": 30,
+      "maxLambdaSize": "50mb"
     },
     "api/upload_url.py": {
-      "maxDuration": 30
+      "maxDuration": 30,
+      "maxLambdaSize": "50mb"
+    },
+    "api/health.py": {
+      "maxLambdaSize": "50mb"
     }
   },
+  "rewrites": [
+    { "source": "/api/upload-url", "destination": "/api/upload_url.py" },
+    { "source": "/api/health", "destination": "/api/health.py" },
+    { "source": "/api/upload", "destination": "/api/upload.py" },
+    { "source": "/api/ask", "destination": "/api/ask.py" }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -57,3 +34,4 @@
     }
   ]
 }
+
