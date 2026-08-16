@@ -1,19 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "api/ask.py": {
-      "maxDuration": 60
-    },
-    "api/upload.py": {
-      "maxDuration": 30
-    },
-    "api/upload_url.py": {
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    { "source": "/api/upload-url", "destination": "/api/upload_url" }
-  ],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -25,4 +11,3 @@
     }
   ]
 }
-

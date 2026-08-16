@@ -118,7 +118,7 @@ el("urlBtn").addEventListener("click", async () => {
   if (!url) return;
   setStatus(`fetching ${url}...`, false, true);
   try {
-    const res = await fetch(`${API}/api/upload-url`, {
+    const res = await fetch(`${API}/api/upload_url`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url }),
