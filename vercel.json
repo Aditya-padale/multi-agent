@@ -2,19 +2,13 @@
   "version": 2,
   "functions": {
     "api/ask.py": {
-      "maxDuration": 60,
-      "maxLambdaSize": "50mb"
+      "maxDuration": 60
     },
     "api/upload.py": {
-      "maxDuration": 30,
-      "maxLambdaSize": "50mb"
+      "maxDuration": 30
     },
     "api/upload_url.py": {
-      "maxDuration": 30,
-      "maxLambdaSize": "50mb"
-    },
-    "api/health.py": {
-      "maxLambdaSize": "50mb"
+      "maxDuration": 30
     }
   },
   "rewrites": [
